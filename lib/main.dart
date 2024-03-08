@@ -19,16 +19,33 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  String title = "Tap the screen";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          "",
+        title: Text(
+          title,
           textScaler: TextScaler.noScaling,
+        ),
+      ),
+      body: GestureDetector(
+        onTap: () {
+          setState(() {
+            title = DateTime.now().toIso8601String();
+          });
+        },
+        child: Container(
+          color: Colors.white,
         ),
       ),
     );
